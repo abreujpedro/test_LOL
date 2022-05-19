@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  db:
+    container_name: "node_db"
+    restart: always
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=plans
+    volumes:
+      - pgdata:/app/data
+  app:
+    build: .
+    command: npm run dev
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PGDATABASE=plans
+      - PGUSER=root
+      - PGHOST=db
+      - PGPASSWORD=123
+    depends_on:
+      - db
+volumes:
+  pgdata:
