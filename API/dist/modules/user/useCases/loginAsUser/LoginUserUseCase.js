@@ -14,26 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Encrypt_1 = __importDefault(require("../../../../util/encrypt/Encrypt"));
 const CustomError_1 = __importDefault(require("../../../../util/error/CustomError"));
+const Token_1 = __importDefault(require("../../../../util/Token/Token"));
 class CreateUserUseCase {
     constructor(repository) {
         this.repository = repository;
     }
-    execute({ name, email, password }) {
+    execute({ email, password }) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!email) {
                 throw new CustomError_1.default("Email incorrect", 400);
             }
             const userAlreadyExists = yield this.repository.getUSerByEmail(email);
-            if (userAlreadyExists) {
-                throw new CustomError_1.default("User Already Exists", 400);
+            if (!userAlreadyExists) {
+                throw new CustomError_1.default("Email or password incorrect", 400);
             }
             try {
-                const passwordHash = yield Encrypt_1.default.encryptData(password);
-                this.repository.createUser({
-                    name,
-                    email,
-                    password: passwordHash,
-                });
+                const userPassword = yield this.repository.getUserPasswordByEmail(email);
+                const isCorrect = yield Encrypt_1.default.compareData(password, userPassword);
+                if (isCorrect) {
+                    const token = Token_1.default.createToken({ email });
+                    return { token };
+                }
+                else {
+                    throw new CustomError_1.default("Email or password incorrect", 401);
+                }
             }
             catch (error) {
                 throw error;

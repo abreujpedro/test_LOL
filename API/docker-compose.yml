@@ -23,6 +23,7 @@ services:
       - PGUSER=root
       - PGHOST=db
       - PGPASSWORD=123
+      - JWT_SECRET=1432k21j2h349291156
     depends_on:
       - db
 volumes:

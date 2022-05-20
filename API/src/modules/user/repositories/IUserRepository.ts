@@ -1,3 +1,5 @@
+import { Model } from "sequelize/types";
+
 export interface ICreateUserDTO {
   name: string;
   email: string;
@@ -5,6 +7,7 @@ export interface ICreateUserDTO {
 }
 
 export default interface IUserRepository {
-  createUser: (userDetails: ICreateUserDTO) => Promise<unknown>;
-  getUSerByEmail: (email: String) => Promise<unknown>;
+  createUser: (userDetails: ICreateUserDTO) => void;
+  getUSerByEmail: (email: string) => Promise<Model<any, any> | null>;
+  getUserPasswordByEmail:(email: string) => any;
 }

@@ -21,7 +21,7 @@ class CreateUserController {
                 return response.status(201).end();
             }
             catch (error) {
-                return response.status(500).json({ message: error });
+                return error;
             }
         });
     }

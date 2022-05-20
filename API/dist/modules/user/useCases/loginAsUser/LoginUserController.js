@@ -8,22 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt_1 = __importDefault(require("bcrypt"));
-class Encrypt {
-    static encryptData(textToEncrypt) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield bcrypt_1.default.hash(textToEncrypt, Encrypt.salt);
-        });
+class CreateUserController {
+    constructor(useCase) {
+        this._useCase = useCase;
     }
-    static compareData(textToCompare, textEncrypted) {
+    handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield bcrypt_1.default.compare(textToCompare, textEncrypted);
+            const { email, password } = request.body;
+            try {
+                const token = yield this._useCase.execute({ email, password });
+                return response.status(200).json(token);
+            }
+            catch (error) {
+                return error;
+            }
         });
     }
 }
-Encrypt.salt = 10;
-exports.default = Encrypt;
+exports.default = CreateUserController;

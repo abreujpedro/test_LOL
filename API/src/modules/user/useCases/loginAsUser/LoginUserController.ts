@@ -1,4 +1,4 @@
-import CreateUserUseCase from "./CreateUserUseCase";
+import CreateUserUseCase from "./LoginUserUseCase";
 import { Request, Response } from "express";
 
 export default class CreateUserController {
@@ -7,10 +7,10 @@ export default class CreateUserController {
     this._useCase = useCase;
   }
   async handle(request: Request, response: Response) {
-    const { name, email, password } = request.body;
+    const { email, password } = request.body;
     try {
-      await this._useCase.execute({ name, email, password });
-      return response.status(201).end();
+      const token = await this._useCase.execute({ email, password });
+      return response.status(200).json(token);
     } catch (error) {
       return error;
     }

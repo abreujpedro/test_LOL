@@ -25,5 +25,11 @@ class UserRepository {
             return user;
         });
     }
+    getUserPasswordByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield UserModel_1.default.findOne({ where: { email } });
+            return user === null || user === void 0 ? void 0 : user.getDataValue("password");
+        });
+    }
 }
 exports.default = UserRepository;

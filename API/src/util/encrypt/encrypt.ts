@@ -1,8 +1,16 @@
 import bcrypt from "bcrypt";
 
-const encrypt = async (textToEncrypt: string | Buffer) => {
-  const salt = 10;
-  return await bcrypt.hash(textToEncrypt, salt);
-};
+abstract class Encrypt {
+  private static salt = 10;
+  static async encryptData(textToEncrypt: string | Buffer){
+    return await bcrypt.hash(textToEncrypt, Encrypt.salt);
+  }
 
-export default encrypt;
+  static async compareData(textToCompare: string | Buffer, textEncrypted: string){
+    return await bcrypt.compare(textToCompare, textEncrypted);
+  }
+
+}
+
+
+export default Encrypt;
