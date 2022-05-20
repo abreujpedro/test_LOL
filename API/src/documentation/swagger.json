@@ -8,40 +8,24 @@
   "paths": {
     "/client": {
       "post": {
-        "summary": "Create new costumer",
-        "tags": ["Clients"],
+        "summary": "Create new user",
+        "tags": ["User"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
                   "name": { "type": "string" },
-                  "cnpj": { "type": "string" },
-                  "corporate_name": { "type": "string" },
-                  "phone": { "type": "string" },
-                  "address_name": { "type": "string" },
-                  "cep": { "type": "string" },
-                  "city": { "type": "string" },
-                  "district": { "type": "string" },
-                  "number": { "type": "string" },
-                  "state": { "type": "string" },
-                  "option": { "type": "string" }
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
                 }
               },
               "examples": {
                 "client": {
                   "value": {
                     "name": "João",
-                    "cnpj": "662467259311225",
-                    "corporate_name": "string",
-                    "phone": "string",
-                    "address_name": "Ugolino dalloca",
-                    "cep": "16075125",
-                    "city": "Araçatuba",
-                    "district": "Primavera",
-                    "number": "1357",
-                    "state": "São Paulo",
-                    "option": "Casa"
+                    "email": "jp.dellabianca@gmail.com",
+                    "password": "1234"
                   }
                 }
               }
@@ -50,7 +34,7 @@
         },
         "responses": {
           "201": {
-            "description": "created costumer"
+            "description": "created user"
           },
           "400": {
             "description": "Client Already Exists | Element null | Invalid length"
