@@ -1,7 +1,7 @@
 import React from "react";
 
-const login: React.FC = () => {
-  return <div>login</div>;
+const Login: React.FC = () => {
+  return <div>Login</div>;
 };
 
-export default login;
+export default Login;

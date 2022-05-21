@@ -7,5 +7,5 @@ export const responseParser = (res: HttpClientResponse): any => {
 };
 
 export const errorParser = (error: AxiosError): never => {
-  throw new Error(error.message); //Arrumar esse cara aqui, p ele virar um tsx mais p frente
+  throw new Error(error.message); // Arrumar esse cara aqui, p ele virar um tsx mais p frente
 };

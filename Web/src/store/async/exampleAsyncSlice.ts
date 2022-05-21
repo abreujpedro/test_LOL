@@ -21,7 +21,7 @@ const initialState: InitialState = {
   error: null,
 };
 
-//TODO ERRORS
+// TODO ERRORS
 
 const usersSlice = createSlice({
   name: "users",
