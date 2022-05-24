@@ -1,9 +1,9 @@
-import CreateUserUseCase from "./LoginUserUseCase";
+import LoginUserUseCase from "./LoginUserUseCase";
 import { Request, Response } from "express";
 
-export default class CreateUserController {
-  _useCase: CreateUserUseCase;
-  constructor(useCase: CreateUserUseCase) {
+export default class LoginUserController {
+  _useCase: LoginUserUseCase;
+  constructor(useCase: LoginUserUseCase) {
     this._useCase = useCase;
   }
   async handle(request: Request, response: Response) {

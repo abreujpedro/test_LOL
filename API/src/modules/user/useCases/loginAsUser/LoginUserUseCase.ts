@@ -8,7 +8,7 @@ interface IRequestLogin {
   password: string;
 }
 
-export default class CreateUserUseCase {
+export default class LoginUserUseCase {
   repository: IUserRepository;
   constructor(repository: IUserRepository) {
     this.repository = repository;
@@ -23,12 +23,12 @@ export default class CreateUserUseCase {
       throw new CustomError("Email or password incorrect", 400);
     }
     try {
-      const userPassword = await this.repository.getUserPasswordByEmail(email)
+      const userPassword = await this.repository.getUserPasswordByEmail(email);
       const isCorrect = await Encrypt.compareData(password, userPassword);
 
-      if(isCorrect) {
-        const token = Token.createToken({email})
-        return {token}
+      if (isCorrect) {
+        const token = Token.createToken({ email });
+        return { token };
       } else {
         throw new CustomError("Email or password incorrect", 401);
       }
