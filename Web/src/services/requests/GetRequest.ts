@@ -15,7 +15,7 @@ export abstract class GetRequest {
     try {
       if (token) {
         const plans = await HttpClient.get({
-          url: `/price?dddOrigin=${dddOrigin}&dddToCall=${dddToCall}$price=${price}`,
+          url: `/price?dddOrigin=${dddOrigin}&dddToCall=${dddToCall}$pricePlan=${price}`,
           authenticated: true,
           token,
         });

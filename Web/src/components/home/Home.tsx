@@ -7,6 +7,8 @@ import { getPriceAction } from "../../store/async/getAllPlansSlice";
 import { RootState } from "../../store/store";
 import { AnyAction } from "@reduxjs/toolkit";
 
+// TODO change it to request for api
+
 const options = [
   { value: 2, label: 2 },
   { value: 3, label: 3 },
@@ -28,6 +30,7 @@ const Home: React.FC = () => {
   }, []);
   const price = 2;
   const token = useSelector((state: RootState) => state.tokenReducer).value;
+  const plansState = useSelector((state: RootState) => state.plansReducer);
   const requestPrice = React.useCallback(
     ({
       price,
@@ -77,6 +80,16 @@ const Home: React.FC = () => {
       >
         get Prices
       </button>
+      <div>prices:</div>
+      <div>
+        {plansState.status === "succeeded" && plansState.list ? (
+          <ul>
+            {plansState?.list.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
+          </ul>
+        ) : null}
+      </div>
     </>
   );
 };
