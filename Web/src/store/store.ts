@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tokenReducer from "./tokenState/tokenSlice";
+import plansReducer from "./async/getAllPlansSlice";
 
 export const store = configureStore({
-  reducer: { tokenReducer },
+  reducer: { tokenReducer, plansReducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

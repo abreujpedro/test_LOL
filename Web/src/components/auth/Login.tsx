@@ -1,7 +1,12 @@
 import React from "react";
+import AuthCard from "../cards/authCard/AuthCard";
 
 const Login: React.FC = () => {
-  return <></>;
+  return (
+    <AuthCard>
+      <></>
+    </AuthCard>
+  );
 };
 
 export default Login;

@@ -13,16 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "baseUrl": "src",
     "outDir": "dist",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "#/*": [
-        "../tests/*"
-      ]
-    },
 
     "moduleResolution": "node",
     "resolveJsonModule": true,

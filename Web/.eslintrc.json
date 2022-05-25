@@ -27,7 +27,8 @@
   "prettier"
   ],
   "rules": {
-  "camelcase": "off",
+  "camelcase": 1,
+  "require-jsdoc": 0,
   "@typescript-eslint/naming-convention": [
   "error",
   {
