@@ -10,13 +10,13 @@ import { RootState } from "./store/store";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const isLogged = Boolean(
-    useSelector((state: RootState) => state.tokenReducer).value
-  );
+  const tokenState = useSelector((state: RootState) => state.tokenReducer);
+
+  const isLogged = Boolean(tokenState.value);
   React.useEffect(() => {
     const token = localStorage.getItem("@lol:logged");
     dispatch(setToken(token));
-  }, []);
+  }, [tokenState]);
 
   return (
     <BrowserRouter>

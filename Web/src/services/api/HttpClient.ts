@@ -16,4 +16,22 @@ export abstract class HttpClient {
     const response = await api.request(url);
     return response;
   }
+
+  static async post({
+    url,
+    authenticated,
+    token,
+    body,
+  }: {
+    url: any;
+    authenticated?: boolean;
+    token?: string;
+    body?: { [key: string]: any };
+  }) {
+    if (authenticated && token) {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+    }
+    const response = await api.post(url, body);
+    return response;
+  }
 }

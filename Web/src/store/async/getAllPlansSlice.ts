@@ -3,22 +3,19 @@ import { GetRequest } from "../../services/requests/GetRequest";
 
 export const getPriceAction = createAsyncThunk(
   "plans/getAllPlans",
-  async ({
-    dddOrigin,
-    dddToCall,
-    token,
-  }: {
-    dddOrigin: string;
-    dddToCall: string;
-    token: string;
+  async (obj: {
+    dddOrigin: number;
+    dddToCall: number;
+    token: string | null;
+    price: number;
   }) => {
-    const response = await GetRequest.getPrice(dddOrigin, dddToCall, token);
+    const response = await GetRequest.getPrice(obj);
     return response?.data;
   }
 );
 
 interface IInitialState {
-  list: [];
+  list: any[];
   status: "idle" | "pending" | "succeeded" | "failed";
   error: unknown;
 }
