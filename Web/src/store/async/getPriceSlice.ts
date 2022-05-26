@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GetRequest } from "../../services/requests/GetRequest";
 
 export const getPriceAction = createAsyncThunk(
-  "plans/getAllPlans",
+  "price/getPrice",
   async (obj: {
     dddOrigin: number;
     dddToCall: number;
     token: string | null;
-    price: number;
+    price: number | undefined;
   }) => {
     const response = await GetRequest.getPrice(obj);
-    return response?.data;
+    return response;
   }
 );
 

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { api } from "./api";
 
 export abstract class HttpClient {
@@ -14,7 +15,7 @@ export abstract class HttpClient {
       api.defaults.headers.common.authorization = `Bearer ${token}`;
     }
     const response = await api.request(url);
-    return response;
+    return response.data;
   }
 
   static async post({

@@ -3,7 +3,7 @@ import IPriceRepository from "../IDDDRepository";
 
 export default class DDDRepository implements IPriceRepository {
   async getAllDDD() {
-    const allDDD = await Price.findAll();
+    const allDDD = await Price.findAll({ attributes: ["ddd_origin"] });
     return allDDD;
   }
   async getPriceByDDD(dddOrigin: number, dddTocall: number) {
