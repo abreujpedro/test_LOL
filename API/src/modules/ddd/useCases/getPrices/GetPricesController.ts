@@ -1,3 +1,4 @@
+import CustomError from "../../../../util/error/CustomError";
 import GetPricesUseCase from "./GetPricesUseCase";
 import { Request, Response } from "express";
 
@@ -23,7 +24,10 @@ export default class GetPricesController {
         return response.status(201).json(prices);
       }
     } catch (error) {
-      return error;
+      if (error instanceof CustomError) {
+        return response.status(error.code).json({ error: error.message });
+      }
+      return response.status(500);
     }
   }
 }

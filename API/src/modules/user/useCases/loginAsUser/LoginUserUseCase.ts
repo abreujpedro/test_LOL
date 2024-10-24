@@ -1,4 +1,4 @@
-import Encrypt from "../../../../util/encrypt/Encrypt";
+import Encrypt from "../../../../util/encrypt/encrypt";
 import CustomError from "../../../../util/error/CustomError";
 import Token from "../../../../util/Token/Token";
 import IUserRepository from "../../repositories/IUserRepository";

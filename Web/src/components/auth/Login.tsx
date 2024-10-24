@@ -16,7 +16,7 @@ const Login: React.FC = () => {
     async (email: string, password: string) => {
       const token = await PostRequest.login(email, password);
       dispatch(setToken(token));
-      localStorage.setItem("@lol:logged", token);
+      localStorage.setItem("@lol:logged", token.token);
 
       navigate("/");
     },

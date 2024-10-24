@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import Token from "../util/Token/Token";
 import CustomError from "../util/error/CustomError";
 
-abstract class Auth {
+export class Auth {
   static ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
     const authToken = req.headers.authorization;
 
